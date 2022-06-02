@@ -1,0 +1,27 @@
+{
+  "name": "twitch-tools",
+  "version": "1.0.0",
+  "description": "quetimporta",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/servo98/twitch-tools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/servo98/twitch-tools/issues"
+  },
+  "homepage": "https://github.com/servo98/twitch-tools#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "tmi.js": "^1.8.5"
+  }
+}
