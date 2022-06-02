@@ -1,20 +1,20 @@
 import { Client } from 'tmi.js';
 import config from './config.js';
+import execCommand from './commands.js';
 
 /**
- * 
- * @param {Client} client 
- * @param {*} channel 
- * @param {*} message 
- * @param {*} tags 
+ *
+ * @param {Client} client
+ * @param {*} channel
+ * @param {*} message
+ * @param {*} tags
  */
 export const messageHandler = (client, channel, message, tags) => {
-  
   try {
-    const msg = await client.say(channel, `Yo what's up`);
-    console.log(msg);
+    const fullCommand = message.replace(config.prefix, '').split(' ');
+    execCommand(...fullCommand);
   } catch (error) {
-    console.error('OCURRIO UN ERROR', error);
+    console.error('OCURRIÓ UN ERROR', error);
   }
   console.log(`${tags['display-name']}: ${message}`);
 };
