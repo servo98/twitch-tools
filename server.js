@@ -11,6 +11,8 @@ app.get('/', (_, res) => {
   res.sendFile('public/index.html', { root: '.' });
 });
 
+app.use(express.static('public'));
+
 app.get('/index.js', (_, res) => {
   res.sendFile('public/index.js', { root: '.' });
 });
@@ -24,11 +26,11 @@ io.on('connection', (socket) => {
 });
 
 server.on('listening', () => {
-  console.log('Server ejecutando en 3000');
+  console.log('Server ejecutando en 3000', 'http://localhost:3000');
 });
 
-export { io };
-
-export const initServer = () => {
+const initServer = () => {
   server.listen(3000);
 };
+
+export { io, initServer };

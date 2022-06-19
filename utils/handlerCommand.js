@@ -9,18 +9,12 @@ import execCommand from './commands.js';
  * @param {*} message
  * @param {*} tags
  */
-export const messageHandler = (client, channel, message, tags) => {
+export const messageHandler = (client, tags, message) => {
   try {
-    const fullCommand = message.replace(config.prefix, '').split(' ');
-    execCommand(...fullCommand);
+    const params = message.replace(config.prefix, '').split(' ');
+    const command = params.shift();
+    execCommand(client, tags, command, params);
   } catch (error) {
     console.error('OCURRIÓ UN ERROR', error);
   }
-  console.log(`${tags['display-name']}: ${message}`);
-};
-
-export const validateCommand = (channel, message, tags) => {
-  const a = tags['username'] === config.channel || tags['mod'];
-  const b = message[0] === config.prefix;
-  return a && b;
 };

@@ -4,10 +4,17 @@ const minutes = document.getElementById('minutos');
 const seconds = document.getElementById('segundos');
 const contadores = document.getElementById('contadores');
 
+const audios = [
+  new Audio('./sounds/aña.wav'),
+  new Audio('./sounds/gemi2.wav'),
+  new Audio('./sounds/pato.wav'),
+  new Audio('./sounds/vengo.mp3'),
+];
+
 let socket = io('http://localhost:3000');
 
 socket.on('createTimer', (socketId) => {
-  createTimer(socketId.hrs, socketId.mins, socketId.ss);
+  createTimer(socketId.hrs, socketId.mins, socketId.ss, socketId.sound);
 });
 
 const validFields = (hh, mm, ss) => {
@@ -31,7 +38,7 @@ const secondsToHMS = (seconds) => {
   return `${ds[0]}-${ds[1]}-${ds[2].slice(0, 2)}`;
 };
 
-function createTimer(hh, mm, ss) {
+function createTimer(hh, mm, ss, sound = 0) {
   if (!validFields(hh, mm, ss)) {
     console.log('Error datos inválidos para crear contador');
     return;
@@ -47,8 +54,11 @@ function createTimer(hh, mm, ss) {
       tag.innerHTML = secondsToHMS(s);
     } else {
       socket.emit('timerEnd');
+
       console.log(`Contador terminado: ${id}`);
+      audios[+sound - 1].play();
       clearInterval(id);
+      tag.remove();
     }
   }, 1000);
 

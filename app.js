@@ -1,5 +1,5 @@
 import tmi from 'tmi.js';
-import { messageHandler, validateCommand } from './utils/handlerCommand.js';
+import { messageHandler } from './utils/handlerCommand.js';
 import config from './utils/config.js';
 import { initServer } from './server.js';
 
@@ -20,10 +20,10 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on('message', async (channel, tags, message, self) => {
+client.on('message', async (_, tags, message) => {
   console.log('Mensaje en twitch');
-  if (validateCommand(channel, message, tags)) {
-    messageHandler(client, channel, message, tags);
+  if (message[0] === config.prefix) {
+    messageHandler(client, tags, message);
   }
 });
 
