@@ -17,6 +17,9 @@ const commands = {
 };
 
 const getRole = (tags) => {
+  if (!tags.badges) {
+    return 'viewer';
+  }
   if (tags.badges.broadcaster) {
     return 'owner';
   }
