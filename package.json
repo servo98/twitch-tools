@@ -1,13 +1,12 @@
 {
   "name": "twitch-tools",
   "version": "1.0.0",
-  "description": "quetimporta",
+  "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js",
-    "start": "ts-node app.js"
+    "start": "ts-node server.ts",
+    "build": "tsc",
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts ."
   },
   "repository": {
     "type": "git",
@@ -20,21 +19,12 @@
     "url": "https://github.com/servo98/twitch-tools/issues"
   },
   "homepage": "https://github.com/servo98/twitch-tools#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "module-alias": "^2.2.2",
-    "socket.io": "^4.5.1",
-    "tmi.js": "^1.8.5"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@deep": "src/some/very/deep/directory/or/file",
-    "@my_module": "lib/some-file.js",
-    "something": "src/foo"
-  },
   "devDependencies": {
-    "nodemon": "^2.0.18"
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "nodemon": "^2.0.18",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
   }
 }
