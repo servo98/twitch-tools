@@ -1,5 +1,6 @@
 .env
 .env.local
-.env.dev
-.env.prod
+.env.development
+.env.production
 node_modules/
+build/
